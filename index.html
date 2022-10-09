@@ -8,179 +8,10 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
 
+  <link rel="stylesheet" href="style.css">
+
   <title>Frontend Mentor | Ping coming soon page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;600;700&display=swap');
-
-    *,
-    *::after,
-    *::before {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      font-size: 62.5%;
-    }
-
-
-    body {
-      background-color: hsl(0, 0%, 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      position: relative;
-      font-size: 2rem;
-      font-family: 'Libre Franklin', sans-serif;
-    }
-
-    .text-content {
-      text-align: center;
-    }
-
-    .text-content img {
-      margin: 7rem;
-    }
-
-    .text-content h1 {
-      color: hsl(0, 0%, 59%);
-      font-weight: 300;
-      margin-bottom: 2rem;
-    }
-
-    .text-content span {
-      color: hsl(209, 33%, 12%);
-      font-weight: 700;
-    }
-
-    .text-content h5 {
-      font-weight: 300;
-      margin-bottom: 3rem;
-    }
-
-    .email-input {
-      display: flex;
-    }
-
-    input {
-      padding: 2rem;
-      padding-right: 15rem;
-      border-radius: 5rem;
-      border: 0.2rem solid hsl(223, 100%, 88%);
-      margin-right: 2rem;
-    }
-
-    .error-mesagge {
-      display: none;
-      text-align: left;
-      color: hsl(354, 100%, 66%);
-      font-size: 1.3rem;
-      margin: 0.5rem 2rem;
-      position: absolute;
-    }
-
-    input:focus:invalid~p {
-      display: block;
-    }
-
-    input:focus:invalid {
-      outline: none !important;
-      border-color: hsl(354, 100%, 66%);
-    }
-
-    input::placeholder {
-      color: hsl(223, 100%, 88%);
-    }
-
-    button {
-      background-color: #4f7df3;
-      color: hsl(0, 0%, 100%);
-      padding: 2rem 6rem;
-      font-weight: 600;
-      border-radius: 5rem;
-      border: none;
-      box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.168);
-      cursor: pointer;
-    }
-
-    .main-img {
-      margin: 8rem;
-    }
-
-    .main-img img {
-      width: 55rem;
-    }
-
-    .icon-image {
-      width: 3rem;
-      height: 3rem;
-      margin: 1rem;
-      border-radius: 100%;
-      border: 0.2rem solid hsl(223, 100%, 88%);
-    }
-
-    .icon-image img {
-      height: 1.2rem;
-      width: 1.2rem;
-      margin-left: 0.7rem;
-    }
-
-    .copyright {
-      text-align: center;
-      color: hsl(0, 0%, 59%);
-      font-size: 1.4rem;
-      margin: 5rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width:750px) {
-
-      .text-content img {
-        margin-top: 10rem;
-      }
-
-      .text-content h1 {
-        font-size: 3.4rem;
-        margin-bottom: 2rem;
-      }
-
-      .email-input {
-        display: block;
-      }
-
-      input {
-        margin-right: 0rem;
-      }
-
-      .error-mesagge {
-        position: static;
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      button {
-        margin-top: 1.5rem;
-        padding: 2rem 14.5rem;
-      }
-
-      .main-img img {
-        width: 35rem;
-      }
-
-    }
-
-    .attribution {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      padding: 0.5rem;
-    }
-  </style>
 </head>
 
 <body>
@@ -190,10 +21,10 @@
     <h5>Subscribe and get notified</h5>
     <div class="email-input">
       <div>
-        <input type="email" placeholder="Your email address...">
+        <input id="email" type="text" placeholder="Your email address...">
         <p class="error-mesagge">Please provide a valid email address</p>
       </div>
-      <button>Notify Me</button>
+      <button id="notify">Notify Me</button>
     </div>
 
   </div>
@@ -215,6 +46,30 @@
       Coded by <a href="https://github.com/roricrimson">RoriCrimson</a>.
     </p>
   </footer>
+
+  <script>
+    const email = document.querySelector('#email')
+
+
+    email.oninput = (ev) => {
+      validateEmail(email)
+    }
+
+    email.onblur = () => {
+      validateEmail(email)
+    }
+
+    function validateEmail(emailInput) {
+      const regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if (regex.test(emailInput.value)) {
+        emailInput.classList.remove('invalid')
+      } else {
+        emailInput.classList.add('invalid')
+      }
+    }
+
+
+  </script>
 </body>
 
 </html>
